@@ -20,6 +20,8 @@ class ViewController: UIViewController {
     private let dateLabel = UILabel()
     private let explanationTextView = UITextView()
     private let datePicker = UIDatePicker()
+    private let scrollView = UIScrollView()
+
     
     private let activityIndicator = UIActivityIndicatorView(style: .medium)
 
@@ -113,6 +115,12 @@ class ViewController: UIViewController {
         
     }
    
+    override func viewWillLayoutSubviews() {
+            super.viewWillLayoutSubviews()
+            scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height)
+        }
+        
+        
     
     
     func setData(){
@@ -159,55 +167,96 @@ class ViewController: UIViewController {
         self.present(safariVC, animated: true, completion: nil)
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let orientation = self.view.window?.windowScene?.interfaceOrientation {
+            _ = orientation == .landscapeLeft || orientation == .landscapeRight
+        }
+    }
+
+    // on rotation
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if  UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight {
+            
+
+        } else {
+            scrollView.contentSize = CGSize(width: size.width, height: size.height)
+
+        }
+        
+        super.viewWillTransition(to: size, with: coordinator)
+
+    }
+    
     func setUpUi(){
         // Set up the Activity Indicator
         activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true
         view.addSubview(activityIndicator)
         
+        // Set up the ScrollView
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(scrollView)
+        
+        
         // Set up the ImageView
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(imageView)
+        scrollView.addSubview(imageView)
         
         // Set up the title label
         titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(titleLabel)
+        scrollView.addSubview(titleLabel)
         
         // Set up the date label
         dateLabel.font = UIFont.systemFont(ofSize: 18)
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(dateLabel)
+        scrollView.addSubview(dateLabel)
       
         // Set up the explanation text view
         explanationTextView.isEditable = false
         explanationTextView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(explanationTextView)
+        scrollView.addSubview(explanationTextView)
         
         // Set up the date picker
         datePicker.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(datePicker)
+        scrollView.addSubview(datePicker)
        
         // Set up the constraints for the datePicker, image view, title label, date label and explanation text view
         NSLayoutConstraint.activate([
             
-            datePicker.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            datePicker.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            scrollView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
+            scrollView.rightAnchor.constraint(equalTo:view.rightAnchor,constant: 0),
+            scrollView.bottomAnchor.constraint(equalTo:view.bottomAnchor,constant: 0),
+
+            
+            
+            
+            
+            datePicker.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor, constant: 16),
+            datePicker.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 16),
             datePicker.rightAnchor.constraint(equalTo:view.rightAnchor,constant: -16),
+            datePicker.heightAnchor.constraint(equalToConstant: 40),
+
             
-            imageView.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 16),
-            imageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            imageView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
-            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
+            imageView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 16),
+            imageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+//            imageView.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 16),
+//            imageView.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -16),
             
+            imageView.widthAnchor.constraint(equalToConstant: 400),
+            imageView.heightAnchor.constraint(equalToConstant: 400),
+
             titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16),
-            titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            titleLabel.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 16),
             titleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             
             dateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            dateLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            dateLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant:16),
+            dateLabel.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 16),
+            dateLabel.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant:16),
             
             explanationTextView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 16),
             explanationTextView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
