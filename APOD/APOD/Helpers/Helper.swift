@@ -29,6 +29,7 @@ class Helper {
         }
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
+                print(url)
                 print("Error downloading image: \(error)")
                 completion(nil)
                 return
@@ -40,11 +41,6 @@ class Helper {
             completion(image)
         }.resume()
     }
-    
-    
-    
-
-    
     
     
 }
@@ -66,23 +62,6 @@ extension String {
 }
 
 
-extension AVAsset {
-
-    func generateThumbnail(completion: @escaping (UIImage?) -> Void) {
-        DispatchQueue.global().async {
-            let imageGenerator = AVAssetImageGenerator(asset: self)
-            let time = CMTime(seconds: 0.0, preferredTimescale: 600)
-            let times = [NSValue(time: time)]
-            imageGenerator.generateCGImagesAsynchronously(forTimes: times, completionHandler: { _, image, _, _, _ in
-                if let image = image {
-                    completion(UIImage(cgImage: image))
-                } else {
-                    completion(nil)
-                }
-            })
-        }
-    }
-}
 
 
     

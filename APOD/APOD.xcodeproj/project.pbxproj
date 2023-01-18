@@ -15,7 +15,7 @@
 		96CAE551296E7F4E005FA3BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96CAE550296E7F4E005FA3BA /* Assets.xcassets */; };
 		96CAE554296E7F4E005FA3BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96CAE552296E7F4E005FA3BA /* LaunchScreen.storyboard */; };
 		96CAE55D296E829E005FA3BA /* APOD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAE55C296E829D005FA3BA /* APOD.swift */; };
-		96CAE55F296E82B3005FA3BA /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAE55E296E82B3005FA3BA /* Network.swift */; };
+		96CAE55F296E82B3005FA3BA /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAE55E296E82B3005FA3BA /* API.swift */; };
 		96CAE563296E82D4005FA3BA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAE562296E82D4005FA3BA /* Constant.swift */; };
 		96CAE566296E86E0005FA3BA /* APODViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAE565296E86E0005FA3BA /* APODViewModel.swift */; };
 		96CAE56929767ADA005FA3BA /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAE56829767ADA005FA3BA /* CoreDataHelper.swift */; };
@@ -28,6 +28,7 @@
 		96CAE58129771374005FA3BA /* LastSeenFav+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAE57F29771374005FA3BA /* LastSeenFav+CoreDataProperties.swift */; };
 		96CAE589297722BD005FA3BA /* APODTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAE588297722BD005FA3BA /* APODTests.swift */; };
 		96CAE590297722ED005FA3BA /* APODViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAE58F297722ED005FA3BA /* APODViewModelTests.swift */; };
+		96CAE5942977D3DF005FA3BA /* NetworkChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAE5932977D3DF005FA3BA /* NetworkChecker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +52,7 @@
 		96CAE553296E7F4E005FA3BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		96CAE555296E7F4E005FA3BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96CAE55C296E829D005FA3BA /* APOD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APOD.swift; sourceTree = "<group>"; };
-		96CAE55E296E82B3005FA3BA /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		96CAE55E296E82B3005FA3BA /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		96CAE562296E82D4005FA3BA /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		96CAE565296E86E0005FA3BA /* APODViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODViewModel.swift; sourceTree = "<group>"; };
 		96CAE56829767ADA005FA3BA /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
@@ -65,6 +66,7 @@
 		96CAE586297722BD005FA3BA /* APODTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APODTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96CAE588297722BD005FA3BA /* APODTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODTests.swift; sourceTree = "<group>"; };
 		96CAE58F297722ED005FA3BA /* APODViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODViewModelTests.swift; sourceTree = "<group>"; };
+		96CAE5932977D3DF005FA3BA /* NetworkChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkChecker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,21 +108,15 @@
 		96CAE543296E7F4C005FA3BA /* APOD */ = {
 			isa = PBXGroup;
 			children = (
+				96CAE5922977D3AC005FA3BA /* CoreData */,
+				96CAE5912977CE15005FA3BA /* Views */,
 				96CAE56729767A31005FA3BA /* Helpers */,
 				96CAE564296E86C4005FA3BA /* ViewModel */,
 				96CAE561296E82C4005FA3BA /* Constant */,
-				96CAE560296E82B9005FA3BA /* Network */,
+				96CAE560296E82B9005FA3BA /* API */,
 				96CAE55B296E8264005FA3BA /* Model */,
-				96CAE544296E7F4C005FA3BA /* AppDelegate.swift */,
-				96CAE546296E7F4C005FA3BA /* SceneDelegate.swift */,
-				96CAE548296E7F4C005FA3BA /* ViewController.swift */,
-				96CAE57029770176005FA3BA /* FavoritesViewController.swift */,
-				96CAE54A296E7F4C005FA3BA /* Main.storyboard */,
 				96CAE550296E7F4E005FA3BA /* Assets.xcassets */,
-				96CAE552296E7F4E005FA3BA /* LaunchScreen.storyboard */,
 				96CAE555296E7F4E005FA3BA /* Info.plist */,
-				96CAE54D296E7F4C005FA3BA /* APOD.xcdatamodeld */,
-				96CAE5722977024E005FA3BA /* FavoriteTableViewCell.swift */,
 			);
 			path = APOD;
 			sourceTree = "<group>";
@@ -133,12 +129,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		96CAE560296E82B9005FA3BA /* Network */ = {
+		96CAE560296E82B9005FA3BA /* API */ = {
 			isa = PBXGroup;
 			children = (
-				96CAE55E296E82B3005FA3BA /* Network.swift */,
+				96CAE55E296E82B3005FA3BA /* API.swift */,
 			);
-			path = Network;
+			path = API;
 			sourceTree = "<group>";
 		};
 		96CAE561296E82C4005FA3BA /* Constant */ = {
@@ -160,12 +156,9 @@
 		96CAE56729767A31005FA3BA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				96CAE57E29771374005FA3BA /* LastSeenFav+CoreDataClass.swift */,
-				96CAE57F29771374005FA3BA /* LastSeenFav+CoreDataProperties.swift */,
-				96CAE56C2976FC66005FA3BA /* Favorite+CoreDataClass.swift */,
-				96CAE56D2976FC66005FA3BA /* Favorite+CoreDataProperties.swift */,
 				96CAE56829767ADA005FA3BA /* CoreDataHelper.swift */,
 				96CAE57429770643005FA3BA /* Helper.swift */,
+				96CAE5932977D3DF005FA3BA /* NetworkChecker.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -177,6 +170,32 @@
 				96CAE58F297722ED005FA3BA /* APODViewModelTests.swift */,
 			);
 			path = APODTests;
+			sourceTree = "<group>";
+		};
+		96CAE5912977CE15005FA3BA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				96CAE54A296E7F4C005FA3BA /* Main.storyboard */,
+				96CAE552296E7F4E005FA3BA /* LaunchScreen.storyboard */,
+				96CAE544296E7F4C005FA3BA /* AppDelegate.swift */,
+				96CAE546296E7F4C005FA3BA /* SceneDelegate.swift */,
+				96CAE548296E7F4C005FA3BA /* ViewController.swift */,
+				96CAE57029770176005FA3BA /* FavoritesViewController.swift */,
+				96CAE5722977024E005FA3BA /* FavoriteTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		96CAE5922977D3AC005FA3BA /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				96CAE54D296E7F4C005FA3BA /* APOD.xcdatamodeld */,
+				96CAE57E29771374005FA3BA /* LastSeenFav+CoreDataClass.swift */,
+				96CAE57F29771374005FA3BA /* LastSeenFav+CoreDataProperties.swift */,
+				96CAE56C2976FC66005FA3BA /* Favorite+CoreDataClass.swift */,
+				96CAE56D2976FC66005FA3BA /* Favorite+CoreDataProperties.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,7 +303,8 @@
 				96CAE57529770643005FA3BA /* Helper.swift in Sources */,
 				96CAE549296E7F4C005FA3BA /* ViewController.swift in Sources */,
 				96CAE54F296E7F4C005FA3BA /* APOD.xcdatamodeld in Sources */,
-				96CAE55F296E82B3005FA3BA /* Network.swift in Sources */,
+				96CAE55F296E82B3005FA3BA /* API.swift in Sources */,
+				96CAE5942977D3DF005FA3BA /* NetworkChecker.swift in Sources */,
 				96CAE56E2976FC66005FA3BA /* Favorite+CoreDataClass.swift in Sources */,
 				96CAE58129771374005FA3BA /* LastSeenFav+CoreDataProperties.swift in Sources */,
 				96CAE56F2976FC66005FA3BA /* Favorite+CoreDataProperties.swift in Sources */,

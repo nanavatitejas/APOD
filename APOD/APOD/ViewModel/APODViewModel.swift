@@ -12,13 +12,10 @@ class APODViewModel {
 
     var apod: APOD?
     private var lastSeen: [LastSeenFav] = []
-
+    private var favorites: [Favorite] = []
 
     private let context = CoreDataStack.shared.context
 
-    
-    
-    
     var copyright: String {
         return apod?.copyright ?? ""
     }
@@ -48,9 +45,10 @@ class APODViewModel {
     }
     
     var url: URL {
-        return apod?.url ??  URL(fileURLWithPath: lastSeen.last?.url ?? "")
+        return apod?.url ?? URL(string: (lastSeen.last?.url) ?? "") ?? URL(string: "")!
     }
     
+
     
     func retriveLastSeen(){
         let fetchRequest = LastSeenFav.fetchRequest()
@@ -65,19 +63,18 @@ class APODViewModel {
     }
     
     func saveLastSeen() {
-
-            guard let apod = self.apod else { return }
-            let favorite = LastSeenFav(context: context)
-            favorite.date = apod.date
-            favorite.explanation = apod.explanation
-            favorite.title = apod.title
-            favorite.url = apod.url.absoluteString
-            favorite.hdurl = apod.hdurl?.absoluteString
-            do {
-                try context.save()
-            } catch {
-                print("Error saving the context: \(error)")
-            }
+        guard let apod = self.apod else { return }
+        let favorite = LastSeenFav(context: context)
+        favorite.date = apod.date
+        favorite.explanation = apod.explanation
+        favorite.title = apod.title
+        favorite.url = apod.url.absoluteString
+        favorite.hdurl = apod.hdurl?.absoluteString
+        do {
+            try context.save()
+        } catch {
+            print("Error saving the context: \(error)")
+        }
     }
     
     
@@ -118,7 +115,7 @@ class APODViewModel {
     
     func fetchAPOD(on date: Date, completion: @escaping (Result<APOD, Error>) -> Void) {
         
-        Network.shared.fetchAPOD(on: date) { (result) in
+        API.shared.fetchAPOD(on: date) { (result) in
             switch result {
             case .success(let apod):
                 self.apod = apod
@@ -129,6 +126,22 @@ class APODViewModel {
                 completion(.failure(error))
             }
         }
+    }
+    
+    func checkFavorites()->Bool {
+        let fetchRequest = Favorite.fetchRequest()
+        do {
+            favorites = try context.fetch(fetchRequest)
+            for fav in favorites {
+                if fav.title == apod?.title {
+                    return true
+                }
+            }
+        } catch {
+            return false
+            print("Error fetching favorites: \(error)")
+        }
+        return false
     }
     
            
