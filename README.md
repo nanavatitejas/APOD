@@ -3,12 +3,15 @@ This is an iOS application that allows users to view and save the NASA's Astrono
 
 Features
 View the current APOD or select a specific date to view
+Generate youtube video thumbnail from URL
+View Video if media type is video
 Save the current APOD as a favorite
 View a list of saved favorites
 Requirements
 iOS 14.0 or later
 Xcode 12 or later
 Have not used any 3rd party libraries 
+Dark Mode supoort 
 Written Unit test cases
 
 
