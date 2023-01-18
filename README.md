@@ -8,6 +8,8 @@ View a list of saved favorites
 Requirements
 iOS 14.0 or later
 Xcode 12 or later
+Have not used any 3rd party libraries 
+Written Unit test cases
 
 
 Acknowledgements
